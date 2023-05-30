@@ -108,7 +108,7 @@ while True:
             print('.',end='',flush=True)
             sleep(0.5)
         print()
-        with open("notas.json", 'r+') as f:
+        with open("notas.json", 'r+') as f: #Tenha certeza de que o arquivo notas.json existe no diretório
             notas = json.load(f)
         print('Arquivo carregado com sucesso!')
     elif r == 4: #salvar lista
@@ -117,7 +117,7 @@ while True:
             print('.',end='',flush=True)
             sleep(0.5)
         print()
-        with open("notas.json", 'r+') as f:
+        with open("notas.json", 'r+') as f: #Tenha certeza de que o arquivo notas.json existe no diretório
             json.dump(notas, f, indent=2) 
         print('Arquivo salvo com sucesso!')
     elif r == 5:
