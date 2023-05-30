@@ -2,10 +2,13 @@ import json
 from time import sleep
 notas = []
 mat = {}
+
 def linhas():
     print('='*40)
+    
 linhas()
 print(f'{"BEM VINDO A CALCULADORA DE CR":^30}')
+
 while True:
     linhas()
     print('''Escolha a opção desejada: 
@@ -17,6 +20,7 @@ while True:
     5. Encerrar programa''')
     linhas()
     r = input('Escolha: ')
+  
     if r.isnumeric():
         r = int(r)
     while type(r) != int:
@@ -24,6 +28,7 @@ while True:
         if r.isnumeric():
             r = int(r)
     linhas()
+    
     if r == 0:
         if len(notas) == 0:
             print('Nenhuma matéria cadastrada!')
@@ -50,6 +55,7 @@ while True:
             print(f'\033[31mCR: {(cr/ch):.2f}\033[m')
         linhas()
         input('Aperte alguma tecla para continuar... ')
+        
     elif r == 1:
         while True:
             mat['nome'] = str(input('Nome ou sigla da matéria: '))
@@ -63,6 +69,7 @@ while True:
                 r = str(input('Inválido! Deseja adicionar outra? [Y/N]: ')).upper()
             if r == 'N':
                 break
+                
     elif r == 2:
         if len(notas) == 0:
             print('Nenhuma matéria para editar!')
@@ -102,6 +109,7 @@ while True:
                     r = str(input('Inválido! Deseja continuar editando? [Y/N]: ')).upper()
                 if r == 'N':
                     break
+                    
     elif r == 3: #carregar lista
         print('Carregando',end='')
         for c in range (0,3):
@@ -111,6 +119,7 @@ while True:
         with open("notas.json", 'r+') as f: #Tenha certeza de que o arquivo notas.json existe no diretório
             notas = json.load(f)
         print('Arquivo carregado com sucesso!')
+        
     elif r == 4: #salvar lista
         print('Salvando',end='')
         for c in range (0,3):
@@ -120,6 +129,7 @@ while True:
         with open("notas.json", 'r+') as f: #Tenha certeza de que o arquivo notas.json existe no diretório
             json.dump(notas, f, indent=2) 
         print('Arquivo salvo com sucesso!')
+        
     elif r == 5:
         print('Tenha um bom dia!')
         break
