@@ -77,7 +77,6 @@ while True:
             print('Nenhuma matéria para editar!')
         else:
             while True:
-                linhas()
                 print(f'{"cod":>3} Matéria')
                 for c in notas:
                     print(f'{(notas.index(c)):>3} {c["nome"]}')
@@ -111,6 +110,7 @@ while True:
                     r = str(input('Inválido! Deseja continuar editando? [Y/N]: ')).upper()
                 if r == 'N':
                     break
+                linhas()
                     
     elif r == 3: #carregar lista
         print('Carregando',end='')
