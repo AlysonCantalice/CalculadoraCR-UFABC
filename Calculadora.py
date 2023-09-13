@@ -1,4 +1,5 @@
 import json
+from os.path import exists
 from time import sleep
 notas = []
 mat = {}
@@ -51,6 +52,7 @@ while True:
                 cr += (cm * c['carga'])
                 ch += c['carga']
                 cm = 0
+            linhas()
             print(f'Créditos totais: {ch}')
             print(f'\033[31mCR: {(cr/ch):.2f}\033[m')
         linhas()
@@ -116,9 +118,12 @@ while True:
             print('.',end='',flush=True)
             sleep(0.5)
         print()
-        with open("notas.json", 'r+') as f: #Tenha certeza de que o arquivo notas.json existe no diretório
-            notas = json.load(f)
-        print('Arquivo carregado com sucesso!')
+        if not exists("notas.json"): #Verifica se existe o arquivo notas.json
+            print('Nenhum arquivo localizado. Não foi possível carregar!')
+        else:
+            with open('notas.json', 'r') as f: #Abre o arquivo notas.json para poder apenas ler
+                notas = json.load(f)
+            print('Arquivo carregado com sucesso!')
         
     elif r == 4: #salvar lista
         print('Salvando',end='')
@@ -126,7 +131,9 @@ while True:
             print('.',end='',flush=True)
             sleep(0.5)
         print()
-        with open("notas.json", 'r+') as f: #Tenha certeza de que o arquivo notas.json existe no diretório
+        if not exists("notas.json"): #Se não encontrar o arquivo notas.json, criar um
+            open("notas.json", "w")
+        with open("notas.json", 'r+') as f: #Abre o arquivo notas.json para poder ler e escrever
             json.dump(notas, f, indent=2) 
         print('Arquivo salvo com sucesso!')
         
